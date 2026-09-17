@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú - Restaurante</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f4ef;
+            color: #222;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 20px;
+            background: #222;
+            color: white;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin-top: 8px;
+        }
+
+        main {
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 35px;
+            border-bottom: 2px solid #222;
+            padding-bottom: 8px;
+        }
+
+        .plato {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .plato h3 {
+            margin: 0 0 5px;
+        }
+
+        .descripcion {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .precio {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🍽️ Restaurante</h1>
+    <p>Menú a la carta</p>
+</header>
+
+<main>
+
+    <h2>Entrantes</h2>
+
+    <div class="plato">
+        <div>
+            <h3>Ensalada Mediterránea</h3>
+            <div class="descripcion">
+                Tomate, lechuga, aceitunas y atún.
+            </div>
+        </div>
+        <div class="precio">8,00 €</div>
+    </div>
+
+    <div class="plato">
+        <div>
+            <h3>Tabla de Quesos</h3>
+            <div class="descripcion">
+                Selección de quesos nacionales.
+            </div>
+        </div>
+        <div class="precio">12,00 €</div>
+    </div>
+
+
+    <h2>Carnes</h2>
+
+    <div class="plato">
+        <div>
+            <h3>Entrecot</h3>
+            <div class="descripcion">
+                Entrecot de ternera a la parrilla.
+            </div>
+        </div>
+        <div class="precio">22,00 €</div>
+    </div>
+
+    <div class="plato">
+        <div>
+            <h3>Pollo a la Brasa</h3>
+            <div class="descripcion">
+                Pollo acompañado de patatas.
+            </div>
+        </div>
+        <div class="precio">14,00 €</div>
+    </div>
+
+
+    <h2>Postres</h2>
+
+    <div class="plato">
+        <div>
+            <h3>Tarta de la Casa</h3>
+            <div class="descripcion">
+                Pregunta por la variedad disponible.
+            </div>
+        </div>
+        <div class="precio">6,00 €</div>
+    </div>
+
+</main>
+
+<footer>
+    Gracias por visitarnos
+</footer>
+
+</body>
+</html>
