@@ -2,985 +2,681 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Menú | Restaurante</title>
-
-<meta name="description" content="Menú digital del restaurante">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#6b3e22">
+<meta name="description" content="Menú digital del Restaurante Casablanca · El Boquerón · Abarán">
+<title>Restaurante Casablanca · El Boquerón</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-* {
-    box-sizing: border-box;
+:root{
+  --brown:#5b351f;
+  --brown2:#7b4b2a;
+  --cream:#f7f0e3;
+  --cream2:#fffaf2;
+  --gold:#b98a45;
+  --text:#35271e;
+  --muted:#76685d;
+  --white:#fff;
+  --border:#e5d7c4;
 }
 
-html {
-    scroll-behavior: smooth;
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  line-height:1.5;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f7f4ee;
-    color: #222;
+header{
+  background:
+    linear-gradient(rgba(78,43,24,.88),rgba(78,43,24,.88)),
+    repeating-linear-gradient(90deg,#6b4024 0,#6b4024 8px,#704529 8px,#704529 16px);
+  color:white;
+  text-align:center;
+  padding:38px 18px 30px;
+  border-bottom:4px solid var(--gold);
 }
 
-/* ---------- PORTADA ---------- */
-
-.hero {
-    min-height: 330px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px 20px;
-    background: linear-gradient(135deg, #222, #4a4a4a);
-    color: white;
+.logo{
+  width:82px;
+  height:82px;
+  margin:0 auto 14px;
+  border:2px solid #e5c17a;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:35px;
+  background:rgba(255,255,255,.08);
 }
 
-.logo {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: white;
-    color: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 42px;
-    margin-bottom: 20px;
+header h1{
+  font-family:Georgia,serif;
+  font-size:34px;
+  letter-spacing:2px;
 }
 
-.hero h1 {
-    margin: 0;
-    font-size: 36px;
+header p{
+  margin-top:6px;
+  color:#f3dfbb;
+  font-size:15px;
 }
 
-.hero p {
-    margin: 10px 0 0;
-    font-size: 18px;
-    opacity: .9;
+.lang{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:var(--cream2);
+  padding:10px;
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  border-bottom:1px solid var(--border);
 }
 
-/* ---------- IDIOMAS ---------- */
-
-.languages {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    padding: 15px;
-    background: white;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+.lang button,
+.category button{
+  border:1px solid var(--border);
+  background:white;
+  color:var(--brown);
+  border-radius:20px;
+  padding:8px 13px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.languages button {
-    border: 1px solid #ccc;
-    background: white;
-    border-radius: 20px;
-    padding: 8px 13px;
-    cursor: pointer;
+.lang button.active,
+.category button.active{
+  background:var(--brown);
+  color:white;
+  border-color:var(--brown);
 }
 
-.languages button.active {
-    background: #222;
-    color: white;
+.actions{
+  max-width:850px;
+  margin:18px auto 0;
+  padding:0 14px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
 }
 
-/* ---------- CONTENEDOR ---------- */
-
-.container {
-    max-width: 760px;
-    margin: auto;
-    padding: 20px;
+.action{
+  text-decoration:none;
+  background:white;
+  color:var(--brown);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:13px 7px;
+  text-align:center;
+  font-weight:bold;
+  box-shadow:0 3px 10px rgba(0,0,0,.06);
 }
 
-/* ---------- BUSCADOR ---------- */
-
-.search {
-    margin: 10px 0 25px;
+.action span{
+  display:block;
+  font-size:22px;
+  margin-bottom:3px;
 }
 
-.search input {
-    width: 100%;
-    padding: 15px 18px;
-    border: 1px solid #ddd;
-    border-radius: 14px;
-    font-size: 16px;
-    outline: none;
+.search{
+  max-width:850px;
+  margin:18px auto 10px;
+  padding:0 14px;
 }
 
-/* ---------- NAVEGACIÓN ---------- */
-
-.category-nav {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    margin-bottom: 25px;
+.search input{
+  width:100%;
+  padding:14px 16px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  font-size:16px;
+  outline:none;
+  background:white;
 }
 
-.category-nav a {
-    flex-shrink: 0;
-    text-decoration: none;
-    color: #222;
-    background: white;
-    border: 1px solid #ddd;
-    padding: 10px 14px;
-    border-radius: 20px;
-    font-size: 14px;
+.category{
+  max-width:900px;
+  margin:10px auto 20px;
+  padding:0 12px;
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  scrollbar-width:none;
 }
 
-/* ---------- CATEGORÍAS ---------- */
+.category::-webkit-scrollbar{display:none}
 
-.category {
-    margin-bottom: 40px;
-    scroll-margin-top: 80px;
+main{
+  max-width:900px;
+  margin:auto;
+  padding:0 14px 35px;
 }
 
-.category-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 2px solid #222;
-    padding-bottom: 10px;
-    margin-bottom: 5px;
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:25px 0 12px;
+  color:var(--brown);
+  font-family:Georgia,serif;
+  font-size:25px;
 }
 
-.category-title h2 {
-    margin: 0;
-    font-size: 25px;
+.section-title:after{
+  content:"";
+  height:1px;
+  background:var(--gold);
+  flex:1;
 }
 
-/* ---------- PLATOS ---------- */
-
-.dish {
-    background: white;
-    border-radius: 15px;
-    padding: 17px;
-    margin: 12px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+.card{
+  background:var(--cream2);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:11px;
+  box-shadow:0 3px 12px rgba(63,40,20,.06);
 }
 
-.dish h3 {
-    margin: 0 0 7px;
-    font-size: 18px;
+.card h3{
+  color:var(--brown);
+  font-size:18px;
 }
 
-.dish-description {
-    margin: 0 0 10px;
-    color: #666;
-    font-size: 14px;
-    line-height: 1.5;
+.card p{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:14px;
 }
 
-.allergen {
-    display: inline-block;
-    font-size: 12px;
-    background: #f0f0f0;
-    color: #555;
-    padding: 5px 9px;
-    border-radius: 10px;
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:9px;
 }
 
-.season {
-    display: inline-block;
-    margin-left: 5px;
-    font-size: 12px;
-    background: #e8f5e9;
-    color: #286b35;
-    padding: 5px 9px;
-    border-radius: 10px;
+.badge{
+  background:#efe3d1;
+  border:1px solid #dfcdb5;
+  color:#60432c;
+  border-radius:20px;
+  padding:4px 8px;
+  font-size:12px;
 }
 
-/* ---------- BOTONES ---------- */
-
-.actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 30px 0;
+.season{
+  background:#e9dfbf;
+  border-color:#cdb87b;
 }
 
-.action {
-    text-align: center;
-    padding: 15px;
-    border-radius: 14px;
-    background: #222;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+.allergen-box{
+  margin:25px 0;
+  padding:17px;
+  border-radius:16px;
+  background:#fff8ea;
+  border:1px solid #e2c994;
 }
 
-/* ---------- AVISO ---------- */
-
-.notice {
-    background: white;
-    border-radius: 15px;
-    padding: 18px;
-    margin: 30px 0;
-    font-size: 13px;
-    line-height: 1.6;
-    color: #555;
+.allergen-box h3{
+  color:var(--brown);
+  margin-bottom:8px;
 }
 
-/* ---------- PIE ---------- */
-
-footer {
-    text-align: center;
-    padding: 35px 20px;
-    background: #222;
-    color: white;
-    margin-top: 30px;
+.allergen-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
+  margin-top:12px;
 }
 
-footer p {
-    margin: 7px 0;
+.allergen-item{
+  font-size:12px;
+  color:#5c5047;
 }
 
-/* ---------- OCULTAR ---------- */
-
-.hidden {
-    display: none;
+footer{
+  background:var(--brown);
+  color:#f7ead6;
+  text-align:center;
+  padding:28px 16px;
 }
 
-/* ---------- MÓVIL ---------- */
-
-@media (max-width: 600px) {
-
-    .hero {
-        min-height: 290px;
-    }
-
-    .hero h1 {
-        font-size: 30px;
-    }
-
-    .container {
-        padding: 15px;
-    }
-
-    .actions {
-        grid-template-columns: 1fr;
-    }
-
+footer strong{
+  font-family:Georgia,serif;
+  font-size:20px;
 }
 
+footer p{
+  margin-top:6px;
+  font-size:13px;
+}
+
+.hidden{display:none!important}
+
+@media(max-width:500px){
+  header h1{font-size:29px}
+  .actions{grid-template-columns:1fr 1fr 1fr}
+  .action{font-size:11px}
+  .action span{font-size:20px}
+  .allergen-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 
-
 <body>
 
-<!-- ================= PORTADA ================= -->
-
-<header class="hero">
-
-    <div class="logo">🍽️</div>
-
-    <h1 id="restaurant-name">
-        Restaurante
-    </h1>
-
-    <p id="restaurant-subtitle">
-        Menú a la carta
-    </p>
-
+<header>
+  <div class="logo">🍴</div>
+  <h1>CASABLANCA</h1>
+  <p>El Boquerón · Abarán</p>
+  <p>Cocina tradicional · Productos de calidad</p>
 </header>
 
-
-<!-- ================= IDIOMAS ================= -->
-
-<div class="languages">
-
-    <button class="active" onclick="changeLanguage('es')">
-        🇪🇸 ES
-    </button>
-
-    <button onclick="changeLanguage('en')">
-        🇬🇧 EN
-    </button>
-
-    <button onclick="changeLanguage('fr')">
-        🇫🇷 FR
-    </button>
-
+<div class="lang">
+  <button class="active" onclick="setLang('es',this)">🇪🇸 ES</button>
+  <button onclick="setLang('en',this)">🇬🇧 EN</button>
+  <button onclick="setLang('fr',this)">🇫🇷 FR</button>
 </div>
-
-
-<main class="container">
-
-
-<!-- ================= BUSCADOR ================= -->
-
-<div class="search">
-
-    <input
-        type="search"
-        id="search"
-        placeholder="Buscar un plato..."
-        oninput="searchDish()"
-    >
-
-</div>
-
-
-<!-- ================= NAVEGACIÓN ================= -->
-
-<nav class="category-nav">
-
-    <a href="#bebidas">🥤 Bebidas</a>
-
-    <a href="#entrantes">🍴 Entrantes</a>
-
-    <a href="#carnes">🔥 Carnes</a>
-
-    <a href="#pescados">🐟 Pescados</a>
-
-    <a href="#postres">🍰 Postres</a>
-
-</nav>
-
-
-<!-- ================================================= -->
-<!-- ================= BEBIDAS ======================== -->
-<!-- ================================================= -->
-
-<section class="category" id="bebidas">
-
-    <div class="category-title">
-        <h2>🥤 Bebidas</h2>
-    </div>
-
-
-    <div class="dish">
-        <h3>Refrescos</h3>
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Cerveza sin gluten</h3>
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Cerveza</h3>
-
-        <p class="dish-description">
-            1/5 · 1/3 · 1 litro
-        </p>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Vinos tintos</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Vinos blancos</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Vinos de la casa</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- ================= ENTRANTES ====================== -->
-<!-- ================================================= -->
-
-<section class="category" id="entrantes">
-
-    <div class="category-title">
-        <h2>🍴 Entrantes</h2>
-    </div>
-
-
-    <div class="dish">
-        <h3>Ensalada</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Ensaladilla rusa</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Pipirrana murciana</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Embutido casero</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Mojama y hueva</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Jamón y queso</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Quisquilla</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Empanadillas caseras</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Habas y bonito</h3>
-
-        <p class="dish-description">
-            Disponible únicamente durante la temporada de habas.
-        </p>
-
-        <span class="season">
-            🌱 De temporada
-        </span>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-        <h3>Croquetas de jamón</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Croquetas de pulpo con gamba</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Calamar nacional a la andaluza</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Calamar nacional a la plancha</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Pulpo a la gallega</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Tigres</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- ================= CARNES ========================= -->
-<!-- ================================================= -->
-
-<section class="category" id="carnes">
-
-    <div class="category-title">
-
-        <h2>🔥 Carnes a la brasa</h2>
-
-    </div>
-
-
-    <div class="dish">
-        <h3>Pollo</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Cordero</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Secreto</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Lagarto</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-
-    <div class="dish">
-        <h3>Chuletón de vaca</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-    </div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- ================= PESCADOS ======================= -->
-<!-- ================================================= -->
-
-<section class="category" id="pescados">
-
-    <div class="category-title">
-
-        <h2>🐟 Pescados</h2>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Emperador</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Merluza</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-</section>
-
-
-<!-- ================================================= -->
-<!-- ================= POSTRES ======================== -->
-<!-- ================================================= -->
-
-<section class="category" id="postres">
-
-    <div class="category-title">
-
-        <h2>🍰 Postres</h2>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Tarta de queso</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Tarta de la abuela</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Tarta de turrón</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Flan de huevo</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Flan de café</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Flan de turrón</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Contesa</h3>
-
-        <p class="dish-description">
-            Helado de nata con chocolate.
-        </p>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Tarta de whisky</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Tarrina de turrón</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Helados</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Piña natural</h3>
-
-        <span class="allergen">
-            Sin alérgenos declarables conocidos*
-        </span>
-
-    </div>
-
-
-    <div class="dish">
-
-        <h3>Pan de Calatrava</h3>
-
-        <span class="allergen">
-            Consultar alérgenos
-        </span>
-
-    </div>
-
-</section>
-
-
-<!-- ================= AVISO ================= -->
-
-<div class="notice">
-
-    <strong>⚠️ Información sobre alérgenos</strong>
-
-    <p>
-        Si tiene alguna alergia o intolerancia alimentaria,
-        consulte con nuestro personal antes de realizar su pedido.
-    </p>
-
-    <p>
-        La información sobre alérgenos debe confirmarse
-        según los ingredientes y recetas utilizados por el establecimiento.
-    </p>
-
-</div>
-
-
-<!-- ================= ACCIONES ================= -->
 
 <div class="actions">
+  <a class="action" href="tel:+34968776161">
+    <span>📞</span>
+    <label data-i18n="reserve">RESERVAS</label>
+  </a>
 
-    <a class="action"
-       href="tel:+34000000000">
-        📞 Llamar
-    </a>
+  <a class="action"
+     href="https://www.google.com/maps/search/?api=1&query=Restaurante+Casablanca+El+Boquerón+Abarán+Murcia"
+     target="_blank">
+    <span>📍</span>
+    <label data-i18n="directions">CÓMO LLEGAR</label>
+  </a>
 
-    <a class="action"
-       href="https://www.google.com/maps"
-       target="_blank">
-        📍 Cómo llegar
-    </a>
-
+  <a class="action"
+     href="https://www.google.com/maps/search/?api=1&query=Restaurante+Casablanca+El+Boquerón+Abarán+Murcia"
+     target="_blank">
+    <span>⭐</span>
+    <label data-i18n="reviews">RESEÑAS</label>
+  </a>
 </div>
 
+<div class="search">
+  <input id="search"
+         type="search"
+         placeholder="Buscar en el menú..."
+         data-placeholder="search"
+         oninput="render()">
+</div>
 
-</main>
+<div class="category" id="categories"></div>
 
-
-<!-- ================= FOOTER ================= -->
+<main id="menu"></main>
 
 <footer>
-
-    <p>🍽️ Restaurante</p>
-
-    <p>Gracias por visitarnos</p>
-
+  <strong>RESTAURANTE CASABLANCA</strong>
+  <p>El Boquerón · Abarán · Murcia</p>
+  <p>📞 968 776 161</p>
 </footer>
-
 
 <script>
 
-/* ================================================= */
-/* BUSCADOR */
-/* ================================================= */
+const ALLERGENS={
+  gluten:{icon:"🌾",es:"Gluten",en:"Gluten",fr:"Gluten"},
+  crustaceans:{icon:"🦐",es:"Crustáceos",en:"Crustaceans",fr:"Crustacés"},
+  eggs:{icon:"🥚",es:"Huevos",en:"Eggs",fr:"Œufs"},
+  fish:{icon:"🐟",es:"Pescado",en:"Fish",fr:"Poisson"},
+  peanuts:{icon:"🥜",es:"Cacahuetes",en:"Peanuts",fr:"Arachides"},
+  soy:{icon:"🌱",es:"Soja",en:"Soy",fr:"Soja"},
+  milk:{icon:"🥛",es:"Leche",en:"Milk",fr:"Lait"},
+  nuts:{icon:"🌰",es:"Frutos de cáscara",en:"Nuts",fr:"Fruits à coque"},
+  celery:{icon:"🥬",es:"Apio",en:"Celery",fr:"Céleri"},
+  mustard:{icon:"🟡",es:"Mostaza",en:"Mustard",fr:"Moutarde"},
+  sesame:{icon:"⚪",es:"Sésamo",en:"Sesame",fr:"Sésame"},
+  sulphites:{icon:"🍷",es:"Sulfitos",en:"Sulphites",fr:"Sulfites"},
+  lupin:{icon:"🌿",es:"Altramuces",en:"Lupin",fr:"Lupin"},
+  molluscs:{icon:"🦪",es:"Moluscos",en:"Molluscs",fr:"Mollusques"}
+};
 
-function searchDish() {
+const CAT={
+  bebidas:{es:"Bebidas",en:"Drinks",fr:"Boissons"},
+  entrantes:{es:"Entrantes",en:"Starters",fr:"Entrées"},
+  carnes:{es:"Carnes a la brasa",en:"Grilled meats",fr:"Viandes grillées"},
+  pescado:{es:"Pescado",en:"Fish",fr:"Poissons"},
+  postres:{es:"Postres",en:"Desserts",fr:"Desserts"}
+};
 
-    const input =
-        document.getElementById("search")
-        .value
-        .toLowerCase();
+const MENU=[
 
-    const dishes =
-        document.querySelectorAll(".dish");
+/* BEBIDAS */
+{cat:"bebidas",name:{es:"Refrescos",en:"Soft drinks",fr:"Boissons rafraîchissantes"},allergens:[]},
+{cat:"bebidas",name:{es:"Vinos tintos",en:"Red wines",fr:"Vins rouges"},allergens:["sulphites"]},
+{cat:"bebidas",name:{es:"Vinos blancos",en:"White wines",fr:"Vins blancs"},allergens:["sulphites"]},
+{cat:"bebidas",name:{es:"Vinos de la casa",en:"House wines",fr:"Vins de la maison"},allergens:["sulphites"]},
+{cat:"bebidas",name:{es:"Cerveza sin gluten",en:"Gluten-free beer",fr:"Bière sans gluten"},allergens:[]},
+{cat:"bebidas",name:{es:"Cerveza",en:"Beer",fr:"Bière"},desc:{es:"Litros · 1/5 · 1/3",en:"Litres · 1/5 · 1/3",fr:"Litres · 1/5 · 1/3"},allergens:["gluten"]},
 
-    dishes.forEach(function(dish) {
+/* ENTRANTES */
+{cat:"entrantes",name:{es:"Ensalada",en:"Salad",fr:"Salade"},desc:{
+es:"Tomate, olivas, atún, maíz, zanahoria y cebolla.",
+en:"Tomato, olives, tuna, corn, carrot and onion.",
+fr:"Tomate, olives, thon, maïs, carotte et oignon."
+},allergens:["fish"]},
 
-        const text =
-            dish.innerText.toLowerCase();
+{cat:"entrantes",name:{es:"Ensaladilla rusa",en:"Russian salad",fr:"Salade russe"},desc:{
+es:"Patata, huevo, atún, mayonesa y verduras.",
+en:"Potato, egg, tuna, mayonnaise and vegetables.",
+fr:"Pomme de terre, œuf, thon, mayonnaise et légumes."
+},allergens:["eggs","fish"]},
 
-        if (text.includes(input)) {
+{cat:"entrantes",name:{es:"Pipirrana murciana",en:"Murcian pipirrana",fr:"Pipirrana murcienne"},desc:{
+es:"Preparación tradicional con bacalao.",
+en:"Traditional preparation with cod.",
+fr:"Préparation traditionnelle à base de morue."
+},allergens:["fish"]},
 
-            dish.classList.remove("hidden");
+{cat:"entrantes",name:{es:"Embutido casero",en:"Homemade cured meats",fr:"Charcuterie maison"},desc:{
+es:"Tocino, morcilla, salchicha seca y longaniza.",
+en:"Pork belly, blood sausage, cured sausage and longaniza.",
+fr:"Poitrine de porc, boudin, saucisse sèche et longaniza."
+},allergens:[]},
 
-        } else {
+{cat:"entrantes",name:{es:"Mojama y hueva",en:"Mojama and fish roe",fr:"Mojama et œufs de poisson"},allergens:["fish"]},
 
-            dish.classList.add("hidden");
+{cat:"entrantes",name:{es:"Jamón y queso",en:"Ham and cheese",fr:"Jambon et fromage"},desc:{
+es:"Jamón y queso semicurado.",
+en:"Ham and semi-cured cheese.",
+fr:"Jambon et fromage semi-affiné."
+},allergens:["milk"]},
 
-        }
+{cat:"entrantes",name:{es:"Quisquilla",en:"Small prawns",fr:"Petites crevettes"},allergens:["crustaceans"]},
 
-    });
+{cat:"entrantes",name:{es:"Empanadillas caseras",en:"Homemade pastries",fr:"Petites empanadas maison"},desc:{
+es:"Huevo, atún, guisantes y patata en masa con gluten.",
+en:"Egg, tuna, peas and potato in wheat-based pastry.",
+fr:"Œuf, thon, petits pois et pomme de terre dans une pâte contenant du gluten."
+},allergens:["gluten","eggs","fish"]},
 
+{cat:"entrantes",name:{es:"Croquetas de jamón",en:"Ham croquettes",fr:"Croquettes au jambon"},desc:{
+es:"Croquetas de estilo murciano con bechamel y jamón.",
+en:"Murcian-style croquettes with béchamel and ham.",
+fr:"Croquettes à la façon murcienne avec béchamel et jambon."
+},allergens:["gluten","milk"]},
+
+{cat:"entrantes",name:{es:"Croquetas de pulpo con gamba",en:"Octopus and prawn croquettes",fr:"Croquettes de poulpe et crevettes"},allergens:["gluten","milk","crustaceans","molluscs"]},
+
+{cat:"entrantes",name:{es:"Calamar nacional · A la andaluza",en:"Local squid · Andalusian style",fr:"Calamar national · À l'andalouse"},allergens:["gluten","molluscs"]},
+
+{cat:"entrantes",name:{es:"Calamar nacional · A la plancha",en:"Local squid · Grilled",fr:"Calamar national · Grillé"},desc:{
+es:"Servido sin salsa. Salsa verde disponible bajo petición.",
+en:"Served without sauce. Green sauce available on request.",
+fr:"Servi sans sauce. Sauce verte disponible sur demande."
+},allergens:["molluscs"]},
+
+{cat:"entrantes",name:{es:"Pulpo a la gallega",en:"Galician-style octopus",fr:"Poulpe à la galicienne"},desc:{
+es:"Pulpo cocido servido al estilo tradicional, con patata, aceite, sal y pimentón.",
+en:"Boiled octopus served traditionally with potato, olive oil, salt and paprika.",
+fr:"Poulpe cuit servi traditionnellement avec pomme de terre, huile d'olive, sel et paprika."
+},allergens:["molluscs"]},
+
+{cat:"entrantes",name:{es:"Tigres",en:"Stuffed mussels",fr:"Moules farcies"},desc:{
+es:"Mejillones rellenos preparados al estilo tradicional.",
+en:"Traditionally prepared stuffed mussels.",
+fr:"Moules farcies préparées de façon traditionnelle."
+},allergens:["molluscs","gluten","milk","eggs"]},
+
+/* CARNES */
+{cat:"carnes",name:{es:"Pollo a la brasa",en:"Grilled chicken",fr:"Poulet grillé"},desc:{
+es:"A la brasa, preparado únicamente con sal.",
+en:"Grilled and seasoned only with salt.",
+fr:"Grillé et assaisonné uniquement avec du sel."
+},allergens:[]},
+
+{cat:"carnes",name:{es:"Cordero a la brasa",en:"Grilled lamb",fr:"Agneau grillé"},desc:{
+es:"A la brasa, preparado únicamente con sal.",
+en:"Grilled and seasoned only with salt.",
+fr:"Grillé et assaisonné uniquement avec du sel."
+},allergens:[]},
+
+{cat:"carnes",name:{es:"Secreto a la brasa",en:"Grilled secreto pork",fr:"Secreto de porc grillé"},desc:{
+es:"A la brasa, preparado únicamente con sal.",
+en:"Grilled and seasoned only with salt.",
+fr:"Grillé et assaisonné uniquement avec du sel."
+},allergens:[]},
+
+{cat:"carnes",name:{es:"Lagarto a la brasa",en:"Grilled lagarto pork",fr:"Lagarto de porc grillé"},desc:{
+es:"A la brasa, preparado únicamente con sal.",
+en:"Grilled and seasoned only with salt.",
+fr:"Grillé et assaisonné uniquement avec du sel."
+},allergens:[]},
+
+{cat:"carnes",name:{es:"Chuletón de vaca",en:"Beef rib steak",fr:"Côte de bœuf"},desc:{
+es:"A la brasa, preparado únicamente con sal.",
+en:"Grilled and seasoned only with salt.",
+fr:"Grillé et assaisonné uniquement avec du sel."
+},allergens:[]},
+
+/* PESCADO */
+{cat:"pescado",name:{es:"Emperador",en:"Swordfish",fr:"Espadon"},desc:{
+es:"A la plancha, preparado únicamente con sal.",
+en:"Grilled, seasoned only with salt.",
+fr:"Grillé, assaisonné uniquement avec du sel."
+},allergens:["fish"]},
+
+{cat:"pescado",name:{es:"Merluza",en:"Hake",fr:"Merlu"},desc:{
+es:"A la plancha, preparada únicamente con sal.",
+en:"Grilled, seasoned only with salt.",
+fr:"Grillé, assaisonné uniquement avec du sel."
+},allergens:["fish"]},
+
+/* POSTRES */
+{cat:"postres",name:{es:"Tarta de queso",en:"Cheesecake",fr:"Gâteau au fromage"},allergens:["milk","eggs","gluten"]},
+
+{cat:"postres",name:{es:"Tarta de la abuela",en:"Grandmother's cake",fr:"Gâteau de la grand-mère"},desc:{
+es:"Capas de galleta, crema/natillas y chocolate.",
+en:"Layers of biscuits, custard and chocolate.",
+fr:"Couches de biscuits, crème pâtissière et chocolat."
+},allergens:["gluten","milk","eggs"]},
+
+{cat:"postres",name:{es:"Tarta de turrón",en:"Turrón cake",fr:"Gâteau au turrón"},allergens:["milk","eggs","nuts"]},
+
+{cat:"postres",name:{es:"Flan de huevo",en:"Egg flan",fr:"Flan aux œufs"},allergens:["eggs","milk"]},
+
+{cat:"postres",name:{es:"Flan de café",en:"Coffee flan",fr:"Flan au café"},allergens:["eggs","milk"]},
+
+{cat:"postres",name:{es:"Flan de turrón",en:"Turrón flan",fr:"Flan au turrón"},allergens:["eggs","milk","nuts"]},
+
+{cat:"postres",name:{es:"Contesa",en:"Contesa ice-cream cake",fr:"Gâteau glacé Contesa"},desc:{
+es:"Postre helado de nata y chocolate.",
+en:"Ice-cream dessert with cream and chocolate.",
+fr:"Dessert glacé à la crème et au chocolat."
+},allergens:["milk"]},
+
+{cat:"postres",name:{es:"Tarta de whisky",en:"Whisky cake",fr:"Gâteau au whisky"},allergens:["milk","eggs","gluten"]},
+
+{cat:"postres",name:{es:"Tarrina de turrón",en:"Turrón ice cream tub",fr:"Pot glacé au turrón"},allergens:["milk","nuts"]},
+
+{cat:"postres",name:{es:"Helados",en:"Ice creams",fr:"Glaces"},allergens:["milk"]},
+
+{cat:"postres",name:{es:"Piña natural",en:"Fresh pineapple",fr:"Ananas frais"},allergens:[]},
+
+{cat:"postres",name:{es:"Pan de Calatrava",en:"Pan de Calatrava",fr:"Pan de Calatrava"},allergens:["gluten","eggs","milk"]}
+
+];
+
+let lang="es";
+let selectedCat="all";
+
+const TXT={
+  es:{
+    reserve:"RESERVAS",
+    directions:"CÓMO LLEGAR",
+    reviews:"RESEÑAS",
+    search:"Buscar en el menú...",
+    allergens:"Información sobre alérgenos",
+    allergenText:"Los símbolos indican los grupos de alérgenos presentes o que pueden estar presentes según la elaboración. Consulte al personal ante cualquier alergia o intolerancia.",
+    seasonal:"SOLO EN TEMPORADA"
+  },
+  en:{
+    reserve:"RESERVATIONS",
+    directions:"DIRECTIONS",
+    reviews:"REVIEWS",
+    search:"Search the menu...",
+    allergens:"Allergen information",
+    allergenText:"The symbols indicate allergen groups present or potentially present depending on preparation. Please ask our staff if you have any allergy or intolerance.",
+    seasonal:"SEASONAL"
+  },
+  fr:{
+    reserve:"RÉSERVATIONS",
+    directions:"ITINÉRAIRE",
+    reviews:"AVIS",
+    search:"Rechercher dans le menu...",
+    allergens:"Informations sur les allergènes",
+    allergenText:"Les symboles indiquent les groupes d'allergènes présents ou susceptibles d'être présents selon la préparation. Veuillez consulter notre personnel en cas d'allergie ou d'intolérance.",
+    seasonal:"SAISONNIER"
+  }
+};
+
+function setLang(newLang,btn){
+  lang=newLang;
+
+  document.querySelectorAll(".lang button")
+    .forEach(b=>b.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  document.documentElement.lang=lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    el.textContent=TXT[lang][el.dataset.i18n];
+  });
+
+  document.querySelector("#search").placeholder=TXT[lang].search;
+
+  render();
 }
 
+function renderCategories(){
 
-/* ================================================= */
-/* IDIOMAS */
-/* ================================================= */
+  const box=document.querySelector("#categories");
 
-function changeLanguage(language) {
+  box.innerHTML=`
+    <button class="${selectedCat==="all"?"active":""}"
+      onclick="selectCat('all')">
+      ${lang==="es"?"Todos":lang==="en"?"All":"Tous"}
+    </button>
+  `;
 
-    const buttons =
-        document.querySelectorAll(".languages button");
+  Object.keys(CAT).forEach(cat=>{
+    box.innerHTML+=`
+      <button class="${selectedCat===cat?"active":""}"
+        onclick="selectCat('${cat}')">
+        ${CAT[cat][lang]}
+      </button>
+    `;
+  });
+}
 
-    buttons.forEach(function(button) {
+function selectCat(cat){
+  selectedCat=cat;
+  render();
+}
 
-        button.classList.remove("active");
+function render(){
 
+  renderCategories();
+
+  const query=document.querySelector("#search").value
+    .toLowerCase()
+    .trim();
+
+  const main=document.querySelector("#menu");
+  main.innerHTML="";
+
+  Object.keys(CAT).forEach(cat=>{
+
+    if(selectedCat!=="all" && selectedCat!==cat)return;
+
+    const items=MENU.filter(item=>{
+
+      if(item.cat!==cat)return false;
+
+      const text=[
+        item.name.es,
+        item.name.en,
+        item.name.fr,
+        item.desc?.es||"",
+        item.desc?.en||"",
+        item.desc?.fr||""
+      ].join(" ").toLowerCase();
+
+      return !query || text.includes(query);
     });
 
-    if (language === "es") {
+    if(!items.length)return;
 
-        buttons[0].classList.add("active");
+    const title=document.createElement("div");
+    title.className="section-title";
+    title.textContent=CAT[cat][lang];
 
-        document.documentElement.lang = "es";
+    main.appendChild(title);
 
-        document.getElementById("restaurant-subtitle").innerText =
-            "Menú a la carta";
+    items.forEach(item=>{
 
-        document.getElementById("search").placeholder =
-            "Buscar un plato...";
+      const card=document.createElement("article");
+      card.className="card";
 
-    }
+      let badges="";
 
-    if (language === "en") {
+      if(item.name.es==="Habas y bonito"){
+        badges+=`
+          <span class="badge season">
+            🌱 ${TXT[lang].seasonal}
+          </span>`;
+      }
 
-        buttons[1].classList.add("active");
+      (item.allergens||[]).forEach(a=>{
+        const x=ALLERGENS[a];
 
-        document.documentElement.lang = "en";
+        badges+=`
+          <span class="badge"
+                title="${x[lang]}">
+            ${x.icon} ${x[lang]}
+          </span>`;
+      });
 
-        document.getElementById("restaurant-subtitle").innerText =
-            "À la carte menu";
+      card.innerHTML=`
+        <h3>${item.name[lang]}</h3>
+        ${item.desc?.[lang]?`<p>${item.desc[lang]}</p>`:""}
+        ${badges?`<div class="badges">${badges}</div>`:""}
+      `;
 
-        document.getElementById("search").placeholder =
-            "Search for a dish...";
+      main.appendChild(card);
+    });
+  });
 
-        alert(
-            "La traducción completa de los platos se añadirá en la siguiente versión."
-        );
+  const box=document.createElement("section");
+  box.className="allergen-box";
 
-    }
+  box.innerHTML=`
+    <h3>⚠️ ${TXT[lang].allergens}</h3>
+    <p>${TXT[lang].allergenText}</p>
 
-    if (language === "fr") {
+    <div class="allergen-grid">
+      ${Object.values(ALLERGENS).map(x=>`
+        <div class="allergen-item">
+          ${x.icon} ${x[lang]}
+        </div>
+      `).join("")}
+    </div>
+  `;
 
-        buttons[2].classList.add("active");
-
-        document.documentElement.lang = "fr";
-
-        document.getElementById("restaurant-subtitle").innerText =
-            "Menu à la carte";
-
-        document.getElementById("search").placeholder =
-            "Rechercher un plat...";
-
-        alert(
-            "La traduction complète des plats sera ajoutée dans la prochaine version."
-        );
-
-    }
-
+  main.appendChild(box);
 }
+
+render();
 
 </script>
 
